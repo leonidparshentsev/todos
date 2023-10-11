@@ -1,18 +1,42 @@
 .task_line_container {
-    padding: 10px 20px;
+    padding: 10px 20px 15px;
     display: flex;
     flex-direction: column;
     flex: 0 0 250px;
-    margin-bottom: 30px;
+    height: fit-content;
 }
 
 .task_line__title {
     margin-bottom: 10px;
 }
 
+.task_line__new_group {
+    height: 40px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    flex: 0 0 250px;
+    
+}
+
+.new_group__title {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    border: 1px dashed #d8d8d8;
+    border-radius: 5px;
+    background-color: #ededed;
+    cursor: pointer;
+}
+
 .button {
     cursor: pointer;
     border: 1px dashed #d8d8d8;
-    border-radius: 3px;
+    border-radius: 5px;
     padding: 10px 20px;
 }

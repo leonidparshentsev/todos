@@ -4,7 +4,7 @@ export default function Task({title}) {
     
     return (
         <div className={styles.task_container}>
-            <h3>{title}</h3>
+            <h3 className={styles.task__title} >{title}</h3>
         </div>
     )
 }

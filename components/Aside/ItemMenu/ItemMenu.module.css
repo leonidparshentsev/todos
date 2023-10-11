@@ -9,6 +9,7 @@
     line-height: 16px;
 }
 
+.list_menu__item.active,
 .list_menu__item:hover {
     background-color: #d8d8d8;
 }
@@ -17,6 +18,13 @@
     background-color: #bbbbbb;
 }
 
-.item_svg {
+.item__svg {
+    flex: 0 0 18px;
     margin-right: 10px;
+}
+
+.item__p {
+    /* white-space: nowrap; */
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

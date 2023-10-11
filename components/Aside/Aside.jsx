@@ -3,7 +3,7 @@ import Logo from "./Logo/Logo";
 import styles from "./Aside.module.css"
 import { useState } from "react";
 
-export default function Aside({projects, addProject, openProjectBoard}) {
+export default function Aside({projects, addProject, openProjectBoard, activeProject}) {
     const [projectPopupVisible, setProjectPopupVisible] = useState(false);
 
     let addProjectHandle = (e) => {
@@ -17,7 +17,10 @@ export default function Aside({projects, addProject, openProjectBoard}) {
     return (
         <aside className={styles.aside_container}>
             <Logo />
-            <ListMenu projects={projects} openProjectBoard = {openProjectBoard} />
+            <ListMenu 
+                projects={projects} 
+                openProjectBoard = {openProjectBoard} 
+                activeProject = {activeProject} />
             {projectPopupVisible ? (
                 <div className={styles.aside__input}>
                     <svg className={styles.item_svg} width="18px" height="18px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

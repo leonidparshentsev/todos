@@ -20,9 +20,14 @@ export default function Board({activeProject, setActiveProject, addTask}) {
             }
             return group;
         });
-        console.log(targetGroupId);
         addTask({...activeProject, groups: newGroups});
         hideTaskPopupHandle();
+    }
+
+    const addGroupHandle = () => {
+        let newGroup = prompt('Type a group name...');
+        let id = activeProject.groups.length + 1;
+        addTask({...activeProject, groups: [...activeProject.groups, {id, groupTitle: newGroup, tasks: []} ]});
     }
 
     const hideTaskPopupHandle = () => {
@@ -37,7 +42,8 @@ export default function Board({activeProject, setActiveProject, addTask}) {
 
             <TaskBoard activeProject={activeProject} 
             setTaskPopupVisible = {setTaskPopupVisible}
-            setTargetGroupId = {setTargetGroupId} />
+            setTargetGroupId = {setTargetGroupId} 
+            addGroupHandle = {addGroupHandle} />
 
             {taskPopupVisible &&
                 (<div className={styles.popup_container}>
