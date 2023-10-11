@@ -1,0 +1,22 @@
+.list_menu__item {
+    cursor: pointer;
+    display: flex;
+    padding: 2.5px 15px;
+    margin-bottom: 5px;
+    align-items: center;
+    border-radius: 2px;
+    font-size: 15px;
+    line-height: 16px;
+}
+
+.list_menu__item:hover {
+    background-color: #d8d8d8;
+}
+
+.list_menu__item:active { 
+    background-color: #bbbbbb;
+}
+
+.item_svg {
+    margin-right: 10px;
+}

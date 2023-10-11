@@ -1,0 +1,22 @@
+.header_container {
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ededed;
+}
+
+.header_title {
+    padding-right: 10px;
+    flex: 1 0 200px;
+    font-size: 24px;
+    line-height: 24px;
+}
+
+.button {
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: none;
+    font-size: 14px;
+}

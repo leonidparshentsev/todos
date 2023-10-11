@@ -1,0 +1,49 @@
+.aside_container {
+    flex-basis: 200px;
+    padding: 20px 5px;
+    display: flex;
+    flex-direction: column;
+    background-color: #ededed;
+}
+
+.aside__input {
+    cursor: pointer;
+    display: flex;
+    padding: 2.5px 15px;
+    margin-bottom: 5px;
+    align-items: center;
+    border-radius: 2px;
+    font-size: 15px;
+    line-height: 16px;
+}
+
+.input {
+    font-size: 15px;
+    line-height: 16px;
+    border: none;
+    outline: none;
+    background-color: #ededed;
+}
+
+.item_svg {
+    margin-right: 10px;
+}
+
+.aside__button {
+    margin-top: 10px;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    display: flex;
+    padding: 0 15px;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.aside__button:hover {
+    background-color: #d8d8d8;
+}
+
+.aside__button:active { 
+    background-color: #bbbbbb;
+}

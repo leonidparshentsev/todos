@@ -1,0 +1,18 @@
+.task_line_container {
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 250px;
+    margin-bottom: 30px;
+}
+
+.task_line__title {
+    margin-bottom: 10px;
+}
+
+.button {
+    cursor: pointer;
+    border: 1px dashed #d8d8d8;
+    border-radius: 3px;
+    padding: 10px 20px;
+}
