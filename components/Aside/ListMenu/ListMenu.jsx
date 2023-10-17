@@ -1,7 +1,11 @@
 import ItemMenu from "../ItemMenu/ItemMenu";
 import styles from "./ListMenu.module.css";
 
-export default function ListMenu({projects, openProjectBoard, activeProject}) {
+export default function ListMenu({
+        projects, 
+        openProjectBoard,
+        removeProject, 
+        activeProjectId}) {
     return (
         <ul className={styles.list_menu}>
             {projects.map(({ projectTitle, id }) =>
@@ -9,8 +13,9 @@ export default function ListMenu({projects, openProjectBoard, activeProject}) {
                     title={projectTitle}
                     key={id}
                     openProjectBoard={openProjectBoard}
-                    id={id} 
-                    activeProject = {activeProject} />
+                    projectId={id} 
+                    activeProjectId = {activeProjectId}
+                    removeProject = {removeProject} />
             )}
         </ul>
     );

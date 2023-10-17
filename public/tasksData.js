@@ -1,11 +1,11 @@
 const tasksData = [ {
     id: 1,
-    projectTitle: 'Home tasks',
+    projectTitle: 'Learn Javascript',
     groups: [
         {   
             id: 1,
             groupTitle: 'Todo',
-            tasks: [{ id: 1, taskTitle: 'First task todo' }, { id: 2, taskTitle: 'Second task todo' }, { id: 3, taskTitle: 'Theird task todo' }]
+            tasks: [{ id: 1, taskTitle: 'Learn react' }, { id: 2, taskTitle: 'Learn react hooks' }, { id: 3, taskTitle: 'Make pet-projects' }]
         },
         {
             id: 2,
@@ -15,7 +15,27 @@ const tasksData = [ {
         {
             id: 3,
             groupTitle: 'Done',
-            tasks: [{ id: 1, taskTitle: 'First task done' }, { id: 2, taskTitle: 'Second task done' }]
+            tasks: [{ id: 1, taskTitle: 'Understand async/await' }, { id: 2, taskTitle: 'Make some projects with vanila JS' }, { id: 3, taskTitle: 'Learn base syntax' }]
+        }
+    ],
+}, {
+    id: 2,
+    projectTitle: 'Learn Typescript',
+    groups: [
+        {   
+            id: 1,
+            groupTitle: 'Todo',
+            tasks: [{ id: 1, taskTitle: 'Learn base syntax' }, { id: 2, taskTitle: 'Learn generics' }, { id: 3, taskTitle: 'Rewrite some project to typescript' }, { id: 4, taskTitle: 'Make ts project from 0' }]
+        },
+        {
+            id: 2,
+            groupTitle: 'Doing',
+            tasks: []
+        },
+        {
+            id: 3,
+            groupTitle: 'Done',
+            tasks: []
         }
     ],
 }   

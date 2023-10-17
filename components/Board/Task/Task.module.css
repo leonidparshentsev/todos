@@ -1,17 +1,49 @@
 .task_container {
-    margin-bottom: 20px;
+    /* flex: 0 0; */
+    position: relative;
+    /* margin-bottom: 10px; */
+    margin-bottom: 3px;
     width: 100%;
-    min-height: 80px;
-    padding: 10px 20px;
+    min-height: 40px;
+    padding: 10px 5px;
     display: flex;
     flex-direction: column;
-    border: 1px solid #d8d8d8;
-    border-radius: 10px;
-    background-color: #ededed;
+    /* border: 1px solid #d8d8d8; */
+    border: 1px solid var(--gray_task_border);
+    box-shadow: 1px 1px 1px 0 var(--gray_task_border);
+    border-radius: 6px;
+    background-color: #fff;
     cursor: pointer;
 }
 
-.task__title {
-    font-size: 16px;
-    font-weight: 500;
+.task_container:hover { 
+    background-color: var(--pink_main);
 }
+
+.task__title {
+    font-size: 15px;
+    font-weight: 500;
+    word-break: break-word;
+}
+
+.task__options {
+    position: absolute;
+    display: none;
+    top: 5px;
+    right: 5px;
+    width: 40px;
+    height: 20px;
+    border: 1px solid var(--orange);
+}
+
+.task_container:hover .task__options {
+    display: flex;
+}
+
+.options {
+    flex: 1 0 20px;
+    display: flex;
+    justify-content: center;
+}
+
+

@@ -4,49 +4,58 @@
     padding: 20px 5px;
     display: flex;
     flex-direction: column;
-    /* align-items: flex-start; */
-    background-color: #ededed;
+    background-color: var(--aside_background);
+    border-right: 1px solid #f1f1ef;
+    font-size: 15px;
+    line-height: 18px;
 }
 
 .aside__input {
     cursor: pointer;
     display: flex;
-    padding: 2.5px 15px;
-    margin-bottom: 5px;
+    /* padding: 2.5px 15px; */
+    padding: 5px 15px;
+    /* margin-bottom: 5px; */
+    margin-bottom: 1px;
     align-items: center;
     border-radius: 2px;
-    font-size: 15px;
-    line-height: 16px;
+
 }
 
 .input {
     width: 100%;
+
     font-size: 15px;
-    line-height: 16px;
+    line-height: 18px;
+
     border: none;
     outline: none;
-    background-color: #ededed;
+    background-color: var(--aside_background);
 }
 
 .item_svg {
+    flex: 0 0 18px;
     margin-right: 10px;
 }
 
 .aside__button {
-    margin-top: 10px;
+    /* margin-top: 10px; */
     background-color: transparent;
     cursor: pointer;
     border: none;
     display: flex;
-    padding: 2.5px 15px;
-    font-size: 14px;
+    /* padding: 2.5px 15px; */
+    padding: 5px 15px;
+
+    font-size: 15px;
     line-height: 18px;
+
 }
 
 .aside__button:hover {
-    background-color: #d8d8d8;
+    background-color: var(--aside_hover)
 }
 
 .aside__button:active { 
-    background-color: #bbbbbb;
+    background-color: var(--aside_active);
 }

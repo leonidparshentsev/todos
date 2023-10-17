@@ -1,8 +1,52 @@
 @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;700&display=swap');
 
+:root {
+    --main_text: #37352f;
+    --inactive_text: #72716d;
+
+    --gray_task_border: #e6e4de;
+
+    --aside_background: #f7f7f5;
+    --aside_hover: #dadad8;
+    --aside_active: #ededeb;
+
+    --gray_outline: #eee9e8;
+    --gray_button_hover: #ebe9e3;
+    --gray_button_newGroup: #fcfcfa;
+
+    --light_gray: #f1f0f0;
+
+    --gray: #e3e2e0;
+
+    --brown: #eedfda;
+
+    --orange: #f9dec9;
+
+    --yellow: #fdecc8;
+
+    --green: #dbecdb;
+
+    --blue: #d3e4ef;
+
+    --purple: #e7deee;
+
+    --pink_main: #fef8f7;
+    --pink_secondary: #ffe2dd;
+    --pink_text_dark: #5d1615;
+    --pink_text_light: #e06f64;
+
+    --red: #ffe2dd;
+
+    --lightBlue: #2483e2;
+    --blueBorder: #2378cd;
+    --blue_hover: #0277d4;
+    --blue_active: #016bc7;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Red Hat Text', sans-serif;
+    color: var(--main_text);
 }

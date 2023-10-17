@@ -1,93 +1,123 @@
 import { useState } from "react";
 
 import Header from "./Header/Header"
-import TaskBoard from "./TaskBoard/taskBoard"
+import TaskBoard from "./TaskBoard/TaskBoard"
+import TaskPopup from "./TaskPopup/TaskPopup";
 import styles from "./Board.module.css"
 
-export default function Board({activeProject, setActiveProject, addTask}) {
-    const [taskPopupVisible, setTaskPopupVisible] = useState(false);
-    const [inputValue, setInputValue] = useState('');
+export default function Board({
+        activeProject,
+        updateProject,
+        addGroupPopupVisible,
+        setAddGroupPopupVisible,
+        addTaskPopupVisible, 
+        setAddTaskPopupVisible,
+        taskPopupRef,
+        groupPopupRef
+    }) {
+    const [taskInputValue, setTaskInputValue] = useState('');
     const [targetGroupId, setTargetGroupId] = useState(1);
 
-    // Добавляем обновленную группу с новой задачей в список групп текущего проекта. Передаем в addTask обновленный объект текущего проекта.
-    const addTaskHandle = () => {
+    const hideTaskPopupHandle = () => {
+        setAddTaskPopupVisible(false);
+        setTaskInputValue('');
+    };
 
+    // Добавляем обновленную группу с новой задачей в список групп текущего проекта. Передаем в updateProject обновленный объект текущего проекта.
+    const addTaskHandler = (groupId, newTaskName) => {
         let newGroups = activeProject.groups.map( group => {
-            if(group.id === targetGroupId) {
+            if(group.id === groupId) {
                 group = {...group, 
-                    tasks: [...group.tasks, {id: group.tasks.length + 1, taskTitle: inputValue}]
+                    tasks: [...group.tasks, {id: group.tasks.length + 1, taskTitle: newTaskName}]
                 };
             }
             return group;
         });
-        addTask({...activeProject, groups: newGroups});
+        updateProject({...activeProject, groups: newGroups});
         hideTaskPopupHandle();
-    }
+    };
 
-    const addGroupHandle = () => {
-        let newGroup = prompt('Type a group name...');
-        let id = activeProject.groups.length + 1;
-        addTask({...activeProject, groups: [...activeProject.groups, {id, groupTitle: newGroup, tasks: []} ]});
-    }
+    const editTaskName = (groupId, taskId, newName) => {
+        if(!newName) return;
 
-    const hideTaskPopupHandle = () => {
-        setTaskPopupVisible(false);
-        setInputValue('');
+        let newGroups = activeProject.groups.map( group => {
+            if(group.id === groupId) {
+                group = {...group, 
+                    tasks: [...group.tasks.map((item) => item.id === taskId ? {...item, taskTitle: newName} : item)]
+                };
+            }
+            return group;
+        });
+        updateProject({...activeProject, groups: newGroups});
+    };
+
+    const removeTask = (groupId, taskId) => {
+        let ask = confirm('Are you sure?');
+        if(!ask) return;
+        let newGroups = activeProject.groups.map( group => {
+            if(group.id === groupId) {
+                group = {...group, 
+                    tasks: [...group.tasks.filter((item) => item.id !== taskId)]
+                };
+            }
+            return group;
+        });
+        updateProject({...activeProject, groups: newGroups});
+    };
+
+    const addGroup = (groupName) => {
+        if(groupName) {
+            let id = activeProject.groups.length + 1;
+            updateProject({...activeProject, groups: [...activeProject.groups, {id, groupTitle: groupName, tasks: []} ]});
+        }
+    };
+
+    const editGroup = (groupName, groupId) => {
+        if(groupName) {
+            updateProject({...activeProject, groups: [...activeProject.groups.map((group) => {
+                if(group.id === groupId) return {...group, groupTitle: groupName}
+                else return group;
+            })]});
+        }
+    };
+
+    const removeGroup = (groupId) => {
+        let ask = confirm('Are you sure?');
+        if(!ask) return;
+        updateProject({
+            ...activeProject, groups: [...activeProject.groups.filter((group) => {
+                if (group.id !== groupId) return group;
+            })]
+        });
     };
 
     return (
         <div className={styles.board_container}>
             <Header title = {activeProject.projectTitle} 
-            setTaskPopupVisible = {setTaskPopupVisible} />
+            setAddTaskPopupVisible = {setAddTaskPopupVisible} />
 
             <TaskBoard activeProject={activeProject} 
-            setTaskPopupVisible = {setTaskPopupVisible}
+            setAddTaskPopupVisible = {setAddTaskPopupVisible}
             setTargetGroupId = {setTargetGroupId} 
-            addGroupHandle = {addGroupHandle} />
+            editTaskName = {editTaskName}
+            removeTask = {removeTask}
+            addGroup = {addGroup}
+            editGroup = {editGroup}
+            removeGroup = {removeGroup}
+            addGroupPopupVisible = {addGroupPopupVisible}
+            setAddGroupPopupVisible = {setAddGroupPopupVisible}
+            groupPopupRef = {groupPopupRef} />
 
-            {taskPopupVisible &&
-                (<div className={styles.popup_container}>
-                    <div className={styles.popup}>
-                        <label className={styles.popup__label} htmlFor="taskName">Type a name:</label>
-                        <input autoFocus value={inputValue}
-                            onChange={(e) => setInputValue(e.target.value)}
-                            className={styles.popup__input}
-                            type="text"
-                            name="taskName"
-                            autoComplete="off"
-                        />
-                        <label
-                            className={styles.popup__label}
-                            htmlFor="groupName">
-                            Choose a group:
-                        </label>
-                        <select value={targetGroupId}
-                            name="groupName"
-                            onChange={(e) => {
-                                setTargetGroupId(Number(e.target.value))
-                                console.log(e.target.value);
-                            }}
-                            className={styles.popup__input}>{
-                                activeProject.groups.map(group =>
-                                    <option key={group.id}
-                                        value={group.id}>{group.groupTitle}</option>
-                                )
-                            }
-                        </select>
-                        <div className={styles.popup__buttons}>
-                            <button
-                                className={styles.popup__button}
-                                onClick={addTaskHandle}>
-                                Add new
-                            </button>
-                            <button
-                                className={styles.popup__button}
-                                onClick={hideTaskPopupHandle} >
-                                Cancel
-                            </button>
-                        </div>
-                    </div>
-                </div>)
+            {addTaskPopupVisible && 
+                <TaskPopup 
+                taskPopupRef = {taskPopupRef} 
+                taskInputValue = {taskInputValue} 
+                setTaskInputValue = {setTaskInputValue} 
+                targetGroupId = {targetGroupId} 
+                setTargetGroupId = {setTargetGroupId}
+                activeProject = {activeProject}
+                addTaskHandler = {addTaskHandler}
+                hideTaskPopupHandle = {hideTaskPopupHandle} />
             }
         </div>
     )

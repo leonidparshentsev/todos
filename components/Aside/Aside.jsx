@@ -3,10 +3,15 @@ import Logo from "./Logo/Logo";
 import styles from "./Aside.module.css"
 import { useState } from "react";
 
-export default function Aside({projects, addProject, openProjectBoard, activeProject}) {
+export default function Aside({
+        projects, 
+        addProject,
+        removeProject, 
+        openProjectBoard, 
+        activeProjectId}) {
     const [projectPopupVisible, setProjectPopupVisible] = useState(false);
 
-    let addProjectHandle = (e) => {
+    let addProjectHandler = (e) => {
         let newValue = e.target.value;
         if(newValue) {
             addProject(newValue);
@@ -20,7 +25,8 @@ export default function Aside({projects, addProject, openProjectBoard, activePro
             <ListMenu 
                 projects={projects} 
                 openProjectBoard = {openProjectBoard} 
-                activeProject = {activeProject} />
+                activeProjectId = {activeProjectId}
+                removeProject = {removeProject} />
             {projectPopupVisible ? (
                 <div className={styles.aside__input}>
                     <svg className={styles.item_svg} width="18px" height="18px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -28,15 +34,14 @@ export default function Aside({projects, addProject, openProjectBoard, activePro
                     </svg>
                     <input type="text"
                         autoFocus
-                        onBlur={addProjectHandle}
+                        onBlur={addProjectHandler}
                         onKeyDown={(e) => {
-                            if (e.key === 'Enter') addProjectHandle(e);
+                            if (e.key === 'Enter') addProjectHandler(e);
                         }}
                         className={styles.input} />
                 </div>
             ) : (
-                <button className={styles.aside__button} onClick={(e) => {
-                    e.preventDefault();
+                <button className={styles.aside__button} onClick={() => {
                     setProjectPopupVisible(true);
                 }}>+ Add a project</button>
             )}

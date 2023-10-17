@@ -1,6 +1,7 @@
 .header_container {
-    width: 100%;
+    /* width: 100%; */
     padding: 10px 20px;
+    margin: 0 20px;
     display: flex;
     align-items: center;
     border-bottom: 1px solid #ededed;
@@ -15,9 +16,17 @@
 
 .button {
     cursor: pointer;
-    padding: 10px 20px;
-    border: 1px dashed #d8d8d8;
-    border-radius: 5px;
-    font-size: 14px;
-    line-height: 16px;
+    color: #fff;
+    background-color: var(--lightBlue);
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: 1px solid var(--blueBorder);
+}
+
+.button:hover {
+    background-color: var(--blue_hover);
+}
+
+.button:active {
+    background-color: var(--blue_active);
 }
