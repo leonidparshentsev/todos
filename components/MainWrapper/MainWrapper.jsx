@@ -12,8 +12,20 @@ export default function MainWrapper() {
     const [activeProject, setActiveProject] = useState(projects[0]); 
 
     useEffect(() => {
-      // setActiveProject({...projects.find(project => project.id === activeProject.id )});
-      setActiveProject(projects[0]);
+      let currentProject;
+
+      if(activeProject) {
+        currentProject = {...projects.find(project => project.id === activeProject.id)};
+      } 
+
+      // Проверяем существование текущего проекта в обновленном массиве, если существует обновляем состояние. Если нет - проверяем, остались ли вообще проекты ? выбираем первый : отдаем null
+      if(currentProject && currentProject.id) {
+        setActiveProject(currentProject);
+      } else {
+        if(projects.length > 0) setActiveProject(projects[0]);
+        else setActiveProject(null);
+      }
+    
     }, [projects])
     
     const taskPopupRef = useRef(null);
@@ -23,6 +35,13 @@ export default function MainWrapper() {
       let id = projects.length + 1;
       setProjects([...projects, { id, projectTitle: newTitle, groups: [] }]);
     }
+
+    const editProjectTitle = (newTitle, projectId) => {
+      setProjects(projects.map(project => {
+        if(project.id === projectId) return {...project, projectTitle: newTitle};
+        else return project;
+      }));
+    } 
 
     const removeProject = (projectId) => {
       let ask = confirm('Are you sure?');
@@ -59,8 +78,9 @@ export default function MainWrapper() {
 
         <Aside
           projects={projects}
-          activeProjectId={activeProject.id}
+          activeProject={activeProject}
           addProject={addProject}
+          editProjectTitle={editProjectTitle}
           removeProject={removeProject}
           openProjectBoard={openProjectBoard} />
 

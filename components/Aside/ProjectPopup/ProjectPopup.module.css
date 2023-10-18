@@ -1,0 +1,27 @@
+.aside__input {
+    cursor: pointer;
+    display: flex;
+    /* padding: 2.5px 15px; */
+    padding: 5px 15px;
+    /* margin-bottom: 5px; */
+    margin-bottom: 1px;
+    align-items: center;
+    border-radius: 2px;
+
+}
+
+.input {
+    width: 100%;
+
+    font-size: 15px;
+    line-height: 18px;
+
+    border: none;
+    outline: none;
+    background-color: var(--aside_background);
+}
+
+.item_svg {
+    flex: 0 0 18px;
+    margin-right: 10px;
+}

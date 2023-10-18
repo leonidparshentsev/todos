@@ -15,10 +15,9 @@ export default function TaskBoard({
     groupPopupRef
     }) {
     
-    return (
-        <div className={styles.board_container}>
-            {
-                activeProject.groups
+    return ( activeProject ?
+        (<div className={styles.board_container}>
+            {  (activeProject.groups
                     .map((group) =>
                         <TaskLine
                             title={group.groupTitle}
@@ -35,12 +34,12 @@ export default function TaskBoard({
                             addGroupPopupVisible={addGroupPopupVisible}
                             setAddGroupPopupVisible={setAddGroupPopupVisible}
                             groupPopupRef = {groupPopupRef}
-                 />)
+                 />))
             }
             <TaskLine 
                 title='+'
                 tasks={null}
-                projectId={activeProject.id}
+                projectId={activeProject ? activeProject.id : 0}
                 groupId={0}
                 key={0}
                 isNewGroupLine
@@ -49,6 +48,8 @@ export default function TaskBoard({
                 setAddGroupPopupVisible={setAddGroupPopupVisible}
                 groupPopupRef = {groupPopupRef} 
                 />
-        </div>
+        </div>) : (
+            <div className={styles.board__no_tasks}>Let`s create a new project</div>
+        )
     )
 }

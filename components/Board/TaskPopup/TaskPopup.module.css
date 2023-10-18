@@ -36,6 +36,10 @@
     margin-bottom: 15px;
 }
 
+.popup__input:focus {
+    outline: 1px solid var(--lightBlue);
+}
+
 .popup__buttons {
     display: flex;
 }
@@ -62,4 +66,8 @@
 
 .popup__button:active { 
     background-color: #bbbbbb;
+}
+
+.popup__button:focus {
+    outline: 1px solid var(--lightBlue);
 }

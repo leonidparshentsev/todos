@@ -3,19 +3,31 @@ import styles from "./ListMenu.module.css";
 
 export default function ListMenu({
         projects, 
+        activeProjectId,
+        
+        // addProject,
+        editProjectTitle,
+        removeProject,
         openProjectBoard,
-        removeProject, 
-        activeProjectId}) {
+
+        projectPopupVisible,
+        setProjectPopupVisible}) {
     return (
         <ul className={styles.list_menu}>
-            {projects.map(({ projectTitle, id }) =>
+            {projects && projects.map(({ projectTitle, id }) =>
                 <ItemMenu
+                    key={id}    
                     title={projectTitle}
-                    key={id}
-                    openProjectBoard={openProjectBoard}
                     projectId={id} 
                     activeProjectId = {activeProjectId}
-                    removeProject = {removeProject} />
+
+                    // addProject={addProject}
+                    editProjectTitle={editProjectTitle}
+                    removeProject = {removeProject}
+                    openProjectBoard={openProjectBoard}
+                                        
+                    projectPopupVisible={projectPopupVisible}
+                    setProjectPopupVisible={setProjectPopupVisible} />
             )}
         </ul>
     );

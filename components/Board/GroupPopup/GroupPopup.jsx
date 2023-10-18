@@ -8,6 +8,9 @@ export default function GroupPopup({
     addNewGroupHandler,
     editGroupHandler,
     }) {
+
+        const handler = addNewGroupHandler ? addNewGroupHandler : editGroupHandler;
+
         return (
                 <div
                     className={styles.new_group__popup}
@@ -17,13 +20,14 @@ export default function GroupPopup({
                         autoFocus
                         className={styles.popup__input}
                         onChange={(e) => setNewGroupPopupInputValue(e.target.value)}
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === 'Escape') handler();
+                        }}
                         type="text" placeholder={placeholder} />
                     <button
                         className={styles.popup__button}
-                        onClick={() => {
-                            if(addNewGroupHandler) addNewGroupHandler();
-                            else editGroupHandler();
-                        }}>Done</button>
+                        onClick={handler}
+                        >Done</button>
                 </div>
         )
 }

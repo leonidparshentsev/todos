@@ -60,7 +60,6 @@
     right: 5px;
     width: 40px;
     height: 20px;
-    border: 1px solid var(--orange);
     border-radius: 3px;
 }
 
@@ -70,9 +69,23 @@
 
 .options {
     cursor: pointer;
+    border-radius: 3px;
     flex: 1 0 20px;
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+.options svg path{
+    stroke: var(--pink_text_light);
+}
+
+.options:hover {
+    background-color: var(--light_gray)
+}
+
+.options:active {
+    background-color: var(--gray);
 }
 
 .task_line__button {
@@ -88,6 +101,10 @@
 
 .task_line__button:hover {
     background-color: var(--gray_button_hover);
+}
+
+.task_line__button:focus {
+    outline: 1px solid var(--lightBlue);
 }
 
 .task_line__new_group {
@@ -122,4 +139,8 @@
 
 .new_group__title:active {
     background-color: var(--aside_hover);
+}
+
+.new_group__title:focus {
+    outline: 1px solid var(--lightBlue);
 }

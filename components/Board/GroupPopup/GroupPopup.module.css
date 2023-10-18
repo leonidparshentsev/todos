@@ -60,3 +60,7 @@
 .popup__button:active {
     background-color: var(--blue_active);
 }
+
+.popup__button:focus {
+    outline: 1px solid var(--lightBlue);
+}

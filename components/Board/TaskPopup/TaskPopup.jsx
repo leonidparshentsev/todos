@@ -16,26 +16,31 @@ export default function TaskPopup({
             ref={taskPopupRef}>
             <label className={styles.popup__label} htmlFor="taskName">Type a name:</label>
             <input
-                autoFocus value={taskInputValue}
-                onChange={(e) => setTaskInputValue(e.target.value)}
-                className={styles.popup__input}
                 type="text"
                 name="taskName"
+                tabIndex={0}
                 autoComplete="off"
-            />
-            <label
-                className={styles.popup__label}
-                htmlFor="groupName">
-                Choose a group:
-            </label>
-            <select value={targetGroupId}
+                autoFocus value={taskInputValue}
+                className={styles.popup__input}
+                onChange={(e) => setTaskInputValue(e.target.value)}
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === 'Escape') {
+                        if(taskInputValue) addTaskHandler(targetGroupId, taskInputValue);
+                        else hideTaskPopupHandle();
+                    } 
+                }}/>
+            <label className={styles.popup__label} htmlFor="groupName">Choose a group:</label>
+            <select 
                 name="groupName"
+                tabIndex={0}
+                value={targetGroupId}
                 onChange={(e) => { setTargetGroupId(Number(e.target.value)) }}
-                className={styles.popup__input}>{
-                    activeProject.groups.map(group =>
-                        <option key={group.id}
-                            value={group.id}>{group.groupTitle}</option>
-                    )
+                className={styles.popup__input} >
+                {
+                    activeProject.groups.map( group =>
+                        <option 
+                            key={group.id}
+                            value={group.id}>{group.groupTitle}</option>)
                 }
             </select>
             <div className={styles.popup__buttons}>

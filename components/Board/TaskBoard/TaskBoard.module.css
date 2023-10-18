@@ -5,3 +5,12 @@
     overflow: scroll;
     flex-grow: 1;
 }
+
+.board__no_tasks {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 500;
+}

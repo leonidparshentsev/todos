@@ -93,7 +93,7 @@ export default function Board({
 
     return (
         <div className={styles.board_container}>
-            <Header title = {activeProject.projectTitle} 
+            <Header activeProject = {activeProject} 
             setAddTaskPopupVisible = {setAddTaskPopupVisible} />
 
             <TaskBoard activeProject={activeProject} 

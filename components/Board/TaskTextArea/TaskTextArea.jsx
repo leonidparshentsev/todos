@@ -48,7 +48,10 @@ export default function TaskTextArea({
             hideEditTaskPopupHandler();
             resizeTextarea();
         }}
-        onKeyDown={resizeTextarea}
+        onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === 'Escape') hideEditTaskPopupHandler();
+            resizeTextarea();
+        }}
         onChange={textChangeHandler}
         ref={textAreaRef} />
 }
