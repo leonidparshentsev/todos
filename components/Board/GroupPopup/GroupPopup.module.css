@@ -39,6 +39,7 @@
     font-size: 16px;
     line-height: 16px;
     outline: none;
+    width: 164px;
 }
 .popup__input::-webkit-input-placeholder {
     color: #888888;

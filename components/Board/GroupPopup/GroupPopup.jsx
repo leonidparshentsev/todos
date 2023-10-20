@@ -6,10 +6,10 @@ export default function GroupPopup({
     inputRightSideCoord,
     setNewGroupPopupInputValue,
     addNewGroupHandler,
-    editGroupHandler,
+    editGroupNameHandler,
     }) {
 
-        const handler = addNewGroupHandler ? addNewGroupHandler : editGroupHandler;
+        const handler = addNewGroupHandler ? addNewGroupHandler : editGroupNameHandler;
 
         return (
                 <div

@@ -1,12 +1,11 @@
 .task_line__container {
-    /* padding: 8px 4px 15px; */
     position: relative;
     padding: 4px;
     display: flex;
     flex-direction: column;
     flex: 0 0 270px;
     height: fit-content;
-    background-color: var(--pink_main);
+    /* background-color: var(--pink_main); */
     border-radius: 6px;
 }
 
@@ -24,7 +23,6 @@
     border-radius: 3px;
     align-self: flex-start;
     padding: 4px;
-    /* margin-bottom: 6px; */
     display: flex;
 }
 
@@ -35,22 +33,20 @@
 .task_line__title {
     border-radius: 3px;
     padding: 0 6px;
-    /* margin: 0 0 10px 4px; */
-    /* margin-bottom: 10px; */
-    /* margin-right: 15px; */
+
     margin-right: 5px;
     font-size: 15px;
     font-weight: 500;
-    background-color: var(--pink_secondary);
-    color: var(--pink_text_dark);
-    /* align-self: flex-start; */
+    line-height: 20px;
+    /* background-color: var(--pink_secondary); */
+    /* color: var(--pink_text_dark); */
 }
 
 .task_line__task_count {
     margin-left: 10px;
     padding: 4px 0;
     font-size: 14px;
-    color: var(--pink_text_light);
+    /* color: var(--pink_text_light); */
 }
 
 .task_line__group_options {
@@ -76,9 +72,9 @@
     align-items: center;
 }
 
-.options svg path{
+/* .options svg path{
     stroke: var(--pink_text_light);
-}
+} */
 
 .options:hover {
     background-color: var(--light_gray)
@@ -96,7 +92,7 @@
     padding: 10px 5px;
     font-size: 14px;
     text-align: start;
-    color: var(--pink_text_light);
+    /* color: var(--pink_text_light); */
 }
 
 .task_line__button:hover {
@@ -110,23 +106,18 @@
 .task_line__new_group {
     position: relative;
     height: 40px;
-    /* padding: 10px 20px; */
     display: flex;
     align-items: center;
     justify-content: left;
-    /* flex: 0 0 250px; */
 }
 
 .new_group__title {
     font-weight: 400;
     font-size: 18px;
     line-height: 16px;
-    /* width: 100%; */
-    /* padding: 10px 20px; */
     padding: 10px 15px;
     display: flex;
     flex-direction: column;
-    /* border: 1px dashed #d8d8d8; */
     color: var(--inactive_text);
     border-radius: 5px;
     background-color: var(--gray_button_newGroup);
@@ -142,5 +133,6 @@
 }
 
 .new_group__title:focus {
-    outline: 1px solid var(--lightBlue);
+    outline: none;
+    border: 1px solid var(--lightBlue);
 }

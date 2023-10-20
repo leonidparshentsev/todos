@@ -8,8 +8,13 @@ import tasksData from '../../public/tasksData';
 export default function MainWrapper() {
     const [addGroupPopupVisible, setAddGroupPopupVisible] = useState(false);
     const [addTaskPopupVisible, setAddTaskPopupVisible] = useState(false);
+    const [colorsPopupVisible, setColorsPopupVisible] = useState(false);
     const [projects, setProjects] = useState(tasksData);
-    const [activeProject, setActiveProject] = useState(projects[0]); 
+    const [activeProject, setActiveProject] = useState(projects[0]);
+        
+    const taskPopupRef = useRef(null);
+    const groupPopupRef = useRef(null);
+    const colorsPopupRef = useRef(null);
 
     useEffect(() => {
       let currentProject;
@@ -17,7 +22,6 @@ export default function MainWrapper() {
       if(activeProject) {
         currentProject = {...projects.find(project => project.id === activeProject.id)};
       } 
-
       // Проверяем существование текущего проекта в обновленном массиве, если существует обновляем состояние. Если нет - проверяем, остались ли вообще проекты ? выбираем первый : отдаем null
       if(currentProject && currentProject.id) {
         setActiveProject(currentProject);
@@ -27,9 +31,6 @@ export default function MainWrapper() {
       }
     
     }, [projects])
-    
-    const taskPopupRef = useRef(null);
-    const groupPopupRef = useRef(null);
 
     const addProject = (newTitle) => {
       let id = projects.length + 1;
@@ -69,6 +70,10 @@ export default function MainWrapper() {
 
       if (groupPopupRef.current && 
           !groupPopupRef.current.contains(e.target)) setAddGroupPopupVisible(false);
+      
+      if (colorsPopupRef.current && 
+          !colorsPopupRef.current.contains(e.target)) setColorsPopupVisible(false);
+      
     }
 
     return (
@@ -94,8 +99,12 @@ export default function MainWrapper() {
           addTaskPopupVisible={addTaskPopupVisible}
           setAddTaskPopupVisible={setAddTaskPopupVisible}
 
+          colorsPopupVisible = {colorsPopupVisible}
+          setColorsPopupVisible = {setColorsPopupVisible}
+
           taskPopupRef = {taskPopupRef}
           groupPopupRef = {groupPopupRef}
+          colorsPopupRef={colorsPopupRef}
         />
       </div>
     );

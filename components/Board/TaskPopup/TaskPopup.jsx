@@ -35,7 +35,7 @@ export default function TaskPopup({
                 tabIndex={0}
                 value={targetGroupId}
                 onChange={(e) => { setTargetGroupId(Number(e.target.value)) }}
-                className={styles.popup__input} >
+                className={`${styles.popup__input} ${styles.popup__select}`} >
                 {
                     activeProject.groups.map( group =>
                         <option 

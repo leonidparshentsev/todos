@@ -14,7 +14,7 @@
 }
 
 .task_container:hover { 
-    background-color: var(--pink_main);
+    background-color: #fafafa;
 }
 
 .task__title {
@@ -26,10 +26,13 @@
 .task__options {
     position: absolute;
     display: none;
-    top: 5px;
+    top: 8px;
     right: 5px;
-    width: 40px;
-    height: 20px;
+    width: 52px;
+    height: 24px;
+    border-radius: 3px;
+    background-color: #ffffff;
+    border: 1px solid var(--light_gray);
 }
 
 .task_container:hover .task__options {

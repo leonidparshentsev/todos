@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import styles from "./Task.module.css";
 import TaskTextArea from "../TaskTextArea/TaskTextArea";
 
@@ -6,14 +6,23 @@ export default function Task({
         title, 
         taskId, 
         groupId, 
+        putDropableTaskInsideGroup,
         editTaskName,
-        removeTask}) {
+        removeTask,
+        dragTaskObj,
+        setDragTaskObj}) {
     
     const [editTaskInputVisible, setEditTaskInputVisible ] = useState(false);
     const [taskTitle, setTaskTitle] = useState(title);   
     const [textAreaHeight, setTextAreaHeight] = useState('auto');
 
+    const taskContainer = useRef(null);
+    
+
     const removeTaskHandler = () => {
+        let ask = confirm('Are you sure?');
+        if(!ask) return;
+
         removeTask(groupId, taskId);
     }
 
@@ -25,22 +34,53 @@ export default function Task({
         setEditTaskInputVisible('0');
         editTaskName(groupId, taskId, taskTitle);
     }
+
+    const dragStartHandler = (e, taskId, groupId, title) => {
+        setDragTaskObj({taskId, groupId, title});
+    }
+
+    const dragOverHandler = (e) => {
+        e.preventDefault();
+        if(taskContainer.current && taskContainer.current.contains(e.target)) 
+            taskContainer.current.style.borderBottom = '2px solid #2483e2';
+    }  
+
+    const dragLeaveHandler = (e) => {
+        taskContainer.current.style.borderBottom = 'none';
+    } 
+
+    const dropHandler = (e, currentTaskId, currentGroupId, dragTaskObj) => {
+        e.preventDefault();
+        e.stopPropagation();
+        taskContainer.current.style.borderBottom = 'none';
+        putDropableTaskInsideGroup(currentTaskId, currentGroupId, dragTaskObj);
+    }   
     
     return (
-        <div className={styles.task_container}>
+        <div className={styles.task_container} 
+            draggable={true}
+            
+            onDragStart={(e) => dragStartHandler(e, taskId, groupId, title)}
+            onDragOver={dragOverHandler}
+            onDragLeave={dragLeaveHandler}
+            onDragEnd={dragLeaveHandler}
+            onDrop={(e) => dropHandler(e, taskId, groupId, dragTaskObj)}
+            ref={taskContainer}
+            >
             { editTaskInputVisible === `${groupId} ${taskId}` ? (
                 <TaskTextArea 
-                taskTitle = {taskTitle}
-                setTaskTitle = {setTaskTitle}
-                groupId = {groupId}
-                taskId = {taskId}
-                editTaskInputVisible = {editTaskInputVisible}
-                hideEditTaskPopupHandler = {hideEditTaskPopupHandler}
-                textAreaHeight = {textAreaHeight}
-                setTextAreaHeight = {setTextAreaHeight} />
+                    taskTitle = {taskTitle}
+                    setTaskTitle = {setTaskTitle}
+                    groupId = {groupId}
+                    taskId = {taskId}
+                    editTaskInputVisible = {editTaskInputVisible}
+                    hideEditTaskPopupHandler = {hideEditTaskPopupHandler}
+                    textAreaHeight = {textAreaHeight}
+                    setTextAreaHeight = {setTextAreaHeight} />
             ) : (
                 <h3 className={styles.task__title}
-                style={{height: textAreaHeight}}>{taskTitle}</h3>
+                    onDragOver={(e) => e.preventDefault()}
+                    style={{height: textAreaHeight}}>{taskTitle}</h3>
             )}
             <div className={styles.task__options}>
                 <div className={`${styles.options}`} onClick={showEditTaskPopupHandler}>
