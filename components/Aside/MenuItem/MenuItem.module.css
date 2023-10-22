@@ -2,15 +2,10 @@
     position: relative;
     cursor: pointer;
     display: flex;
-    /* padding: 2.5px 15px;
-    margin-bottom: 5px; */
     padding: 5px 15px;
     margin-bottom: 1px;
     align-items: center;
     border-radius: 2px;
-
-    /* font-size: 15px;
-    line-height: 16px; */
 }
  
 .list_menu__item.active,
@@ -47,21 +42,4 @@
 
 .list_menu__item:hover .item__group_options {
     display: flex;
-}
-
-.options {
-    border-radius: 3px;
-    cursor: pointer;
-    flex: 1 0 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.options:hover {
-    background-color: #cecece;
-}
-
-.options:active {
-    background-color: var(--gray);
 }

@@ -3,18 +3,24 @@ import styles from './MainWrapper.module.css'
 
 import Aside from '../Aside/Aside';
 import Board from '../Board/Board';
-import tasksData from '../../public/tasksData';
+// import tasksData from '../../public/tasksData';
+import tasksData from '../../public/DB.json';
 
 export default function MainWrapper() {
     const [addGroupPopupVisible, setAddGroupPopupVisible] = useState(false);
     const [addTaskPopupVisible, setAddTaskPopupVisible] = useState(false);
     const [colorsPopupVisible, setColorsPopupVisible] = useState(false);
-    const [projects, setProjects] = useState(tasksData);
+    const [projects, setProjects] = useState(tasksData.DB);
     const [activeProject, setActiveProject] = useState(projects[0]);
         
     const taskPopupRef = useRef(null);
     const groupPopupRef = useRef(null);
     const colorsPopupRef = useRef(null);
+
+    useEffect(() => {
+      if(!localStorage.db) localStorage.db = JSON.stringify(tasksData.DB);
+      else setProjects(JSON.parse(localStorage.db));
+    }, [])
 
     useEffect(() => {
       let currentProject;
@@ -29,6 +35,8 @@ export default function MainWrapper() {
         if(projects.length > 0) setActiveProject(projects[0]);
         else setActiveProject(null);
       }
+
+      localStorage.db = JSON.stringify(projects);
     
     }, [projects])
 
@@ -73,7 +81,6 @@ export default function MainWrapper() {
       
       if (colorsPopupRef.current && 
           !colorsPopupRef.current.contains(e.target)) setColorsPopupVisible(false);
-      
     }
 
     return (
@@ -84,6 +91,7 @@ export default function MainWrapper() {
         <Aside
           projects={projects}
           activeProject={activeProject}
+
           addProject={addProject}
           editProjectTitle={editProjectTitle}
           removeProject={removeProject}
