@@ -13,7 +13,7 @@ export const ProjectContextProvider = ({ children }) => {
   const [activeProject, setActiveProject] = useState(null);
 
   useEffect(() => {
-    if (localStorage.getItem('db') === 'null') localStorage.setItem('db', JSON.stringify(tasksData.DB));
+    if (!localStorage.getItem('db')) localStorage.setItem('db', JSON.stringify(tasksData.DB));
     
     setProjects(JSON.parse(localStorage.getItem('db')));
   }, []);
@@ -32,7 +32,7 @@ export const ProjectContextProvider = ({ children }) => {
       else setActiveProject(null);
     }
 
-    localStorage.setItem('db', JSON.stringify(projects));
+    if(projects !== 'null') localStorage.setItem('db', JSON.stringify(projects));
 
   }, [projects]);
 
