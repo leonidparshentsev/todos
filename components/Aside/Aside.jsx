@@ -2,40 +2,22 @@ import Menu from "./Menu/Menu";
 import Logo from "./Logo/Logo";
 import ProjectPopup from "./ProjectPopup/ProjectPopup";
 import styles from "./Aside.module.css"
-import { useState } from "react";
+import { usePopups } from "../contexts/PopupsContext";
 
-export default function Aside({
-        projects, 
-        activeProject,
+export default function Aside() {
 
-        addProject,
-        editProjectTitle,
-        removeProject, 
-        openProjectBoard, }) {
-
-    const [projectPopupVisible, setProjectPopupVisible] = useState(false);
+    const { projectPopupVisible, setProjectPopupVisible } = usePopups();
 
     return (
         <aside className={styles.aside_container}>
             <Logo />
-            <Menu 
-                projects={projects} 
-                activeProjectId = {activeProject ? activeProject.id : 0}
-                
-                editProjectTitle={editProjectTitle}
-                removeProject = {removeProject}
-                openProjectBoard = {openProjectBoard} 
-
-                projectPopupVisible={projectPopupVisible}
-                setProjectPopupVisible={setProjectPopupVisible} />
-
+            <Menu />
             {projectPopupVisible === 'new' ? (
-                <ProjectPopup 
-                    addProject={addProject}
-                    setProjectPopupVisible={setProjectPopupVisible} />
-                ) : (
-                <button 
-                    className={styles.aside__button} 
+                <ProjectPopup
+                    isNewProjectPopup/>
+            ) : (
+                <button
+                    className={styles.aside__button}
                     onClick={() => setProjectPopupVisible('new')}
                 >+ Add a project</button>
             )}

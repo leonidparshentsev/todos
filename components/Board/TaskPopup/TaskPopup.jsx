@@ -1,14 +1,22 @@
+import { usePopups } from "../../contexts/PopupsContext";
+import { useProjectContext } from "../../contexts/ProjectContext";
+import { useTaskContext } from "../../contexts/TaskContext";
 import styles from "./TaskPopup.module.css"
 
 export default function TaskPopup({
-    taskPopupRef,
+    // taskPopupRef,
+    // activeProject,
+    // addTaskHandler,
+    hideTaskPopupHandler,
+
     taskInputValue,
     setTaskInputValue,
     targetGroupId,
-    setTargetGroupId,
-    activeProject,
-    addTaskHandler,
-    hideTaskPopupHandle }) {
+    setTargetGroupId }) {
+
+    const {taskPopupRef} = usePopups();
+    const {activeProject} = useProjectContext();
+    const {addTaskHandler} = useTaskContext();
 
     return (<div className={styles.popup_container}>
         <div
@@ -26,7 +34,7 @@ export default function TaskPopup({
                 onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === 'Escape') {
                         if(taskInputValue) addTaskHandler(targetGroupId, taskInputValue);
-                        else hideTaskPopupHandle();
+                        else hideTaskPopupHandler();
                     } 
                 }}/>
             <label className={styles.popup__label} htmlFor="groupName">Choose a group:</label>
@@ -51,7 +59,7 @@ export default function TaskPopup({
                 </button>
                 <button
                     className={styles.popup__button}
-                    onClick={hideTaskPopupHandle} >
+                    onClick={hideTaskPopupHandler} >
                     Cancel
                 </button>
             </div>

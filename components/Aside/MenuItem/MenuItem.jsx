@@ -1,22 +1,30 @@
+import { usePopups } from '../../contexts/PopupsContext';
+import { useProjectContext } from '../../contexts/ProjectContext';
 import ItemOptions from '../ItemOptions/ItemOptions';
 import ProjectPopup from '../ProjectPopup/ProjectPopup';
 import styles from './MenuItem.module.css'
 
 export default function MenuItem({
         title,     
-        projectId, 
-        activeProjectId,
-        
-        editProjectTitle,
-        removeProject,
-        openProjectBoard,
+        projectId
+    }) {
 
-        projectPopupVisible,
-        setProjectPopupVisible}) {
+    const { activeProject, removeProject, openProjectBoard } = useProjectContext();
+    const { projectPopupVisible, setProjectPopupVisible } = usePopups();
+
+    const showEditPopupHandler = (e) => {
+        e.stopPropagation();
+        setProjectPopupVisible(projectId)
+    };
+
+    const removeProjectHandler = (e) => {
+        e.stopPropagation();
+        removeProject(projectId);
+    };
 
     return (projectPopupVisible !== projectId ?
         (<li 
-            className={`${styles.list_menu__item} ${(activeProjectId === projectId ? styles.active : '')}`}
+            className={`${styles.list_menu__item} ${( activeProject && activeProject.id === projectId ? styles.active : '')}`}
             onClick={() => openProjectBoard(projectId)}
             >
             <svg className={styles.item__svg} width="18px" height="18px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -26,16 +34,14 @@ export default function MenuItem({
 
             <div className={styles.item__group_options} >
                 <ItemOptions 
-                    className={styles.item__group_options}
-                    projectId={projectId}
-                    removeProject={removeProject}
-                    setProjectPopupVisible={setProjectPopupVisible} />
+                    className={styles.item__group_options}                    
+                    editHandler={showEditPopupHandler}
+                    removeHandler={removeProjectHandler}/>
             </div>
         </li>) : (
             <ProjectPopup
                 projectId={projectId}
-                editProjectTitle={editProjectTitle}
-                setProjectPopupVisible={setProjectPopupVisible} />
+                />
         )
     );
 }

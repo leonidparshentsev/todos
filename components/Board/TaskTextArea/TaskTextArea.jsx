@@ -37,21 +37,23 @@ export default function TaskTextArea({
         resizeTextarea();
     }
 
-    return <textarea
-        className={styles.task__textarea}
-        style={{ height: textAreaHeight }}
-        autoFocus
-        rows={1}
-        name="taskTitle"
-        value={taskTitle}
-        onBlur={() => {
-            hideEditTaskPopupHandler();
-            resizeTextarea();
-        }}
-        onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === 'Escape') hideEditTaskPopupHandler();
-            resizeTextarea();
-        }}
-        onChange={textChangeHandler}
-        ref={textAreaRef} />
+    return (
+        <textarea
+            className={styles.task__textarea}
+            style={{ height: textAreaHeight }}
+            autoFocus
+            rows={1}
+            name="taskTitle"
+            value={taskTitle}
+            onBlur={() => {
+                hideEditTaskPopupHandler();
+                resizeTextarea();
+            }}
+            onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === 'Escape') hideEditTaskPopupHandler();
+                resizeTextarea();
+            }}
+            onChange={textChangeHandler}
+            ref={textAreaRef} />
+        )
 }

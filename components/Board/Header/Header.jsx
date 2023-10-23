@@ -1,6 +1,11 @@
+import { usePopups } from "../../contexts/PopupsContext"
+import { useProjectContext } from "../../contexts/ProjectContext";
 import styles from "./Header.module.css"
 
-export default function Header({activeProject, setAddTaskPopupVisible}) {
+export default function Header() {
+
+    const {setAddTaskPopupVisible} = usePopups();
+    const {activeProject} = useProjectContext();
     
     return (
         <div className={styles.header_container}>

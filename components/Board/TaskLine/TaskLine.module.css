@@ -13,77 +13,6 @@
     margin-right: 10px;
 }
 
-.task_line__header {
-    display: flex;
-    margin-bottom: 6px;
-}
-
-.task_line__title_container {
-    cursor: pointer;
-    border-radius: 3px;
-    align-self: flex-start;
-    padding: 4px;
-    display: flex;
-}
-
-.task_line__title_container:hover {
-    background-color: var(--gray_outline);
-}
-
-.task_line__title {
-    border-radius: 3px;
-    padding: 0 6px;
-
-    margin-right: 5px;
-    font-size: 15px;
-    font-weight: 500;
-    line-height: 20px;
-    /* background-color: var(--pink_secondary); */
-    /* color: var(--pink_text_dark); */
-}
-
-.task_line__task_count {
-    margin-left: 10px;
-    padding: 4px 0;
-    font-size: 14px;
-    /* color: var(--pink_text_light); */
-}
-
-.task_line__group_options {
-    position: absolute;
-    display: none;
-    top: 8px;
-    right: 5px;
-    width: 40px;
-    height: 20px;
-    border-radius: 3px;
-}
-
-.task_line__container:hover .task_line__group_options {
-    display: flex;
-}
-
-.options {
-    cursor: pointer;
-    border-radius: 3px;
-    flex: 1 0 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* .options svg path{
-    stroke: var(--pink_text_light);
-} */
-
-.options:hover {
-    background-color: var(--light_gray)
-}
-
-.options:active {
-    background-color: var(--gray);
-}
-
 .task_line__button {
     cursor: pointer;
     background-color: transparent;
@@ -103,12 +32,14 @@
     outline: 1px solid var(--lightBlue);
 }
 
-.task_line__new_group {
+.task_line__new_group,
+.task_line__new_group:hover {
     position: relative;
     height: 40px;
-    display: flex;
+    background: none;
+    /* display: flex;
     align-items: center;
-    justify-content: left;
+    justify-content: left; */
 }
 
 .new_group__title {
@@ -116,23 +47,21 @@
     font-size: 18px;
     line-height: 16px;
     padding: 10px 15px;
+
     display: flex;
     flex-direction: column;
+
     color: var(--inactive_text);
+    border: 1px solid var(--gray_task_border);
     border-radius: 5px;
     background-color: var(--gray_button_newGroup);
     cursor: pointer;
 }
 
 .new_group__title:hover {
-    background-color: var(--aside_active);
-}
-
-.new_group__title:active {
     background-color: var(--aside_hover);
 }
 
-.new_group__title:focus {
-    outline: none;
-    border: 1px solid var(--lightBlue);
+.new_group__title:active {
+    background-color: var(--aside_active);
 }

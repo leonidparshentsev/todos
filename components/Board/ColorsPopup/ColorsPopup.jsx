@@ -1,16 +1,16 @@
 import { useRef } from 'react';
 import styles from './ColorsPopup.module.css'
+import { usePopups } from '../../contexts/PopupsContext';
 
 export default function ColorsPopup({
         colors, 
         currentColorId,
-        colorsPopupRef,
+        // colorsPopupRef,
         setColorId,
         editGroupColorHandler
         }) {
 
-        
-
+    const {colorsPopupRef} = usePopups();
 
     return (<div className={styles.task_line__colors_popup} ref={colorsPopupRef}>
         <p className={styles.colors_popup__title}>Colors</p>

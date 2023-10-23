@@ -38,7 +38,7 @@
 .task_container:hover .task__options {
     display: flex;
 }
-
+/* 
 .options {
     flex: 1 0 20px;
     border-radius: 3px;
@@ -53,4 +53,4 @@
 
 .options:active {
     background-color: var(--gray);
-}
+} */

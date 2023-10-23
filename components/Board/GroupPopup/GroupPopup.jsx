@@ -1,13 +1,16 @@
+import { usePopups } from "../../contexts/PopupsContext";
 import styles from "./GroupPopup.module.css"
 
 export default function GroupPopup({
     placeholder,
-    groupPopupRef,
+    // groupPopupRef,
     inputRightSideCoord,
     setNewGroupPopupInputValue,
     addNewGroupHandler,
     editGroupNameHandler,
     }) {
+
+        const {groupPopupRef} = usePopups();
 
         const handler = addNewGroupHandler ? addNewGroupHandler : editGroupNameHandler;
 

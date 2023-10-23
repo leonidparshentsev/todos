@@ -1,10 +1,14 @@
+import { usePopups } from "../../contexts/PopupsContext";
+import { useProjectContext } from "../../contexts/ProjectContext";
 import styles from "./ProjectPopup.module.css"
 
 export default function ProjectPopup({ 
         projectId,
-        addProject,
-        editProjectTitle,
-        setProjectPopupVisible}) {
+        isNewProjectPopup
+    }) {
+
+    const { addProject, editProjectTitle } = useProjectContext();
+    const { setProjectPopupVisible } = usePopups();
 
     const addProjectHandler = (e) => {
         let newTitle = e.target.value;
@@ -22,7 +26,7 @@ export default function ProjectPopup({
         setProjectPopupVisible(false);
     };
 
-    const handler = editProjectTitle ? editProjectTitleHandler : addProjectHandler;
+    const handler = isNewProjectPopup ? addProjectHandler : editProjectTitleHandler;
 
     return (
         <div className={styles.aside__input}>

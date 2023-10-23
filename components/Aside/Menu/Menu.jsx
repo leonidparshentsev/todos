@@ -1,16 +1,11 @@
+import { useProjectContext } from "../../contexts/ProjectContext";
 import MenuItem from "../MenuItem/MenuItem";
 import styles from "./Menu.module.css";
 
-export default function Menu({
-        projects, 
-        activeProjectId,
+export default function Menu() {
         
-        editProjectTitle,
-        removeProject,
-        openProjectBoard,
+    const { projects } = useProjectContext();
 
-        projectPopupVisible,
-        setProjectPopupVisible}) {
     return (
         <ul className={styles.list_menu}>
             {projects && projects.map(({ projectTitle, id }) =>
@@ -18,14 +13,7 @@ export default function Menu({
                     key={id}    
                     title={projectTitle}
                     projectId={id} 
-                    activeProjectId = {activeProjectId}
-
-                    editProjectTitle={editProjectTitle}
-                    removeProject = {removeProject}
-                    openProjectBoard={openProjectBoard}
-                                        
-                    projectPopupVisible={projectPopupVisible}
-                    setProjectPopupVisible={setProjectPopupVisible} />
+                    />
             )}
         </ul>
     );

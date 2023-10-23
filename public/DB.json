@@ -22,11 +22,11 @@
             "groupTitle": "Doing",
             "colorId": 5,
             "tasks": [
-                        { "id": 1, "taskTitle": "First task doing"
+                        { "id": 1, "taskTitle": "Drink cofee"
                         },
-                        { "id": 2, "taskTitle": "Second task doing"
+                        { "id": 2, "taskTitle": "Move buttons"
                         },
-                        { "id": 3, "taskTitle": "Theird task doing"
+                        { "id": 3, "taskTitle": "Find jobs"
                         }
                     ]
                 },

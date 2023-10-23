@@ -1,14 +1,15 @@
 .options {
+    flex: 1 0 20px;
     border-radius: 3px;
     cursor: pointer;
-    flex: 1 0 20px;
+    
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .options:hover {
-    background-color: #cecece;
+    background-color: var(--light_gray)
 }
 
 .options:active {
