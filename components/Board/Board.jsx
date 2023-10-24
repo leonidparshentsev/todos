@@ -14,31 +14,23 @@ export default function Board() {
     const [taskInputValue, setTaskInputValue] = useState('');
     const [targetGroupId, setTargetGroupId] = useState(1);
 
-    const {addTaskPopupVisible, setAddTaskPopupVisible} = usePopups();
-
-    const hideTaskPopupHandler = () => {
-        setAddTaskPopupVisible(false);
-        setTaskInputValue('');
-    };
+    const { addTaskPopupVisible, hideActivePopups } = usePopups();
 
     useEffect(() => {
         if(addTaskPopupVisible === false) setTaskInputValue('');
     }, [addTaskPopupVisible]);
 
-    const { hideActivePopups } = usePopups();
-
     return (
         <div className={styles.board_container}
             onClick={hideActivePopups}>
             <Header/>
-            <TaskContextProvider hideTaskPopupHandler={hideTaskPopupHandler}>
+            <TaskContextProvider>
                 <GroupContextProvider>
                     <TaskBoard
                         setTargetGroupId={setTargetGroupId}/>
                 </GroupContextProvider>
                 {addTaskPopupVisible &&
                     <TaskPopup
-                        hideTaskPopupHandler={hideTaskPopupHandler}
                         taskInputValue={taskInputValue}
                         setTaskInputValue={setTaskInputValue}
                         targetGroupId={targetGroupId}

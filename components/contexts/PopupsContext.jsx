@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useRef } from "react";
+import { createContext, useContext, useState, useRef, useCallback } from "react";
 
 const PopupsContext = createContext();
 
@@ -17,7 +17,7 @@ export const PopupsContextProvider = ({children}) => {
     const groupPopupRef = useRef(null);
     const colorsPopupRef = useRef(null);
 
-    const hideActivePopups = (e) => {
+    const hideActivePopups = useCallback((e) => {
         if (taskPopupRef.current && 
           !taskPopupRef.current.contains(e.target)) setAddTaskPopupVisible(false);
   
@@ -26,11 +26,12 @@ export const PopupsContextProvider = ({children}) => {
         
         if (colorsPopupRef.current && 
             !colorsPopupRef.current.contains(e.target)) setColorsPopupVisible(false);
-    };
+    }, []);
 
     return (
         <PopupsContext.Provider value={{
                 hideActivePopups,
+
                 projectPopupVisible,
                 setProjectPopupVisible,
                 addGroupPopupVisible,

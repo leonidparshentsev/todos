@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "dev": "next dev"
+    "dev": "next dev",
+    "start": "npm run dev"
   },
   "dependencies": {
     "next": "^13.5.4",

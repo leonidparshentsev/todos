@@ -3,7 +3,6 @@ import styles from "./GroupPopup.module.css"
 
 export default function GroupPopup({
     placeholder,
-    // groupPopupRef,
     inputRightSideCoord,
     setNewGroupPopupInputValue,
     addNewGroupHandler,

@@ -22,7 +22,7 @@
             "groupTitle": "Doing",
             "colorId": 5,
             "tasks": [
-                        { "id": 1, "taskTitle": "Drink cofee"
+                        { "id": 1, "taskTitle": "Drink coffee"
                         },
                         { "id": 2, "taskTitle": "Move buttons"
                         },

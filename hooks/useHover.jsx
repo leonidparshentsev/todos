@@ -20,7 +20,7 @@ export default function useHover(ref) {
             node.removeEventListener('mousemove', on);
             node.removeEventListener('mouseleave', off);
         }
-    })
+    }, [])
 
     return isHover;
 }

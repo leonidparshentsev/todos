@@ -1,11 +1,9 @@
-import { useRef } from 'react';
 import styles from './ColorsPopup.module.css'
 import { usePopups } from '../../contexts/PopupsContext';
 
 export default function ColorsPopup({
         colors, 
         currentColorId,
-        // colorsPopupRef,
         setColorId,
         editGroupColorHandler
         }) {

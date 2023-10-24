@@ -38,19 +38,3 @@
 .task_container:hover .task__options {
     display: flex;
 }
-/* 
-.options {
-    flex: 1 0 20px;
-    border-radius: 3px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.options:hover {
-    background-color: var(--light_gray)
-}
-
-.options:active {
-    background-color: var(--gray);
-} */

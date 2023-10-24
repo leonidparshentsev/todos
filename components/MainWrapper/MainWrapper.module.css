@@ -4,3 +4,10 @@
     height: 100vh;
     overflow: hidden;
 }
+
+@media (max-width: 579px) {
+    .container {
+        flex-direction: column;
+        overflow-y: scroll;
+    }
+}

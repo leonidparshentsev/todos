@@ -1,5 +1,4 @@
 .header_container {
-    /* width: 100%; */
     padding: 10px 20px;
     margin: 0 20px;
     display: flex;
@@ -29,4 +28,11 @@
 
 .button:active {
     background-color: var(--blue_active);
+}
+
+@media (max-width: 579px) {
+    .button {
+        align-self: flex-end;
+        height: 30px;
+    }
 }

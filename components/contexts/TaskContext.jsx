@@ -1,5 +1,6 @@
 import { createContext, useContext } from "react";
 import { useProjectContext } from "./ProjectContext";
+import { usePopups } from "./PopupsContext";
 
 const TaskContext = createContext();
 
@@ -7,9 +8,10 @@ export const useTaskContext = () => {
     return useContext(TaskContext);
 };
 
-export const TaskContextProvider = ({ children, hideTaskPopupHandler }) => {
+export const TaskContextProvider = ({ children }) => {
 
     const { activeProject, updateProject } = useProjectContext();
+    const { setAddTaskPopupVisible } = usePopups();
 
     // Добавляем обновленную группу с новой задачей в список групп текущего проекта. Передаем в updateProject обновленный объект текущего проекта.
     const addTaskHandler = (groupId, newTaskName) => {
@@ -30,7 +32,7 @@ export const TaskContextProvider = ({ children, hideTaskPopupHandler }) => {
             });
             updateProject({...activeProject, groups: newGroups});
         }
-        hideTaskPopupHandler();
+        setAddTaskPopupVisible(false);
     };
 
     const putDropableTaskInsideGroup = (currentTaskId, currentGroupId, dragTaskObj) => {

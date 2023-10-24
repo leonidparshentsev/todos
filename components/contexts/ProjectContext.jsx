@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useRef, useEffect } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import tasksData from '../../public/DB.json';
 
 const ProjectContext = createContext();
@@ -37,9 +37,11 @@ export const ProjectContextProvider = ({ children }) => {
   }, [projects]);
 
   const addProject = (newTitle) => {
-    let id = projects.reduce((max, project) => max = Math.max(max, +project.id), 0) + 1;
+    let id = projects?.reduce((max, project) => max = Math.max(max, +project.id), 0) + 1 || 1;
     let newProject =  { id, projectTitle: newTitle, groups: [] };
-    setProjects([...projects, newProject]);
+    if(projects) setProjects([...projects, newProject]);
+    else setProjects([newProject]);
+    
     setActiveProject(newProject);
   };
 

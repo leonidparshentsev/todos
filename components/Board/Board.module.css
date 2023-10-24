@@ -1,6 +1,5 @@
 .board_container {
     flex: 1 0 300px;
-    /* padding: 10px 20px; */
     padding: 10px 0;
     display: flex;
     flex-direction: column;

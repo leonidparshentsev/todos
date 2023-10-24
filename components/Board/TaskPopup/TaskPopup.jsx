@@ -4,19 +4,14 @@ import { useTaskContext } from "../../contexts/TaskContext";
 import styles from "./TaskPopup.module.css"
 
 export default function TaskPopup({
-    // taskPopupRef,
-    // activeProject,
-    // addTaskHandler,
-    hideTaskPopupHandler,
-
     taskInputValue,
     setTaskInputValue,
     targetGroupId,
     setTargetGroupId }) {
 
-    const {taskPopupRef} = usePopups();
-    const {activeProject} = useProjectContext();
-    const {addTaskHandler} = useTaskContext();
+    const { taskPopupRef, setAddTaskPopupVisible } = usePopups();
+    const { activeProject } = useProjectContext();
+    const { addTaskHandler } = useTaskContext();
 
     return (<div className={styles.popup_container}>
         <div
@@ -25,6 +20,7 @@ export default function TaskPopup({
             <label className={styles.popup__label} htmlFor="taskName">Type a name:</label>
             <input
                 type="text"
+                id="taskName"
                 name="taskName"
                 tabIndex={0}
                 autoComplete="off"
@@ -34,11 +30,12 @@ export default function TaskPopup({
                 onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === 'Escape') {
                         if(taskInputValue) addTaskHandler(targetGroupId, taskInputValue);
-                        else hideTaskPopupHandler();
+                        else setAddTaskPopupVisible(false);
                     } 
                 }}/>
             <label className={styles.popup__label} htmlFor="groupName">Choose a group:</label>
             <select 
+                id="groupName"
                 name="groupName"
                 tabIndex={0}
                 value={targetGroupId}
@@ -59,7 +56,7 @@ export default function TaskPopup({
                 </button>
                 <button
                     className={styles.popup__button}
-                    onClick={hideTaskPopupHandler} >
+                    onClick={() => setAddTaskPopupVisible(false)} >
                     Cancel
                 </button>
             </div>

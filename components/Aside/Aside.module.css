@@ -32,3 +32,9 @@
 .aside__button:focus {
     outline: 1px solid var(--lightBlue);
 }
+
+@media (max-width: 579px) {
+    .aside_container {
+        flex-basis: auto;
+    }
+}

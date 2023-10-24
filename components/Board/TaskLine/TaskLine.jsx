@@ -3,7 +3,6 @@ import Task from "../Task/Task"
 import GroupPopup from "../GroupPopup/GroupPopup"
 import styles from "./TaskLine.module.css"
 import { usePopups } from "../../contexts/PopupsContext";
-// import { useGroupContext } from "../../../contexts/GroupContext";
 import { useGroupContext } from "../../contexts/GroupContext";
 import { useTaskContext } from "../../contexts/TaskContext";
 import { useProjectContext } from "../../contexts/ProjectContext";
@@ -25,6 +24,7 @@ export default function TaskLine({
     setDragTaskObj
     }) {
 
+        // console.log('TaskLine render');
     const { addGroupPopupVisible, 
         setAddGroupPopupVisible,
         setColorsPopupVisible,
@@ -49,26 +49,21 @@ export default function TaskLine({
     }, [projectId, groupColorId]);
 
     useEffect(() => {
-        setNewGroupPopupInputValue('');
+        if(addGroupPopupVisible === false) setNewGroupPopupInputValue('');
     }, [addGroupPopupVisible]);
 
     useEffect(() => {
         setAddGroupPopupVisible(false);
     }, [activeProject]);
 
-    const hideNewGroupPopup = () => {
-        setAddGroupPopupVisible(false);
-        setNewGroupPopupInputValue('');
-    }
-
     const addNewGroupHandler = () => {
         addGroup(newGroupPopupInputValue);
-        hideNewGroupPopup();
+        setAddGroupPopupVisible(false);
     }
 
     const editGroupNameHandler = () => {
         editGroupName(newGroupPopupInputValue, groupId);
-        hideNewGroupPopup();
+        setAddGroupPopupVisible(false);
     }
 
     const editGroupColorHandler = (newColorId) => {
@@ -86,8 +81,6 @@ export default function TaskLine({
         let inputBtnLeftCoord = e.target.getBoundingClientRect().left;
         let clientRightCoord = document.documentElement.clientWidth; 
         let newGroupBtn = newGroupBtnRef.current && newGroupBtnRef.current.contains(e.target);
-
-        console.log(e.target);
 
         // отрабатываем левую сторону
         if(inputBtnLeftCoord < 360) {
