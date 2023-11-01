@@ -1,4 +1,5 @@
-import { usePopups } from '../../contexts/PopupsContext';
+import { useState } from 'react';
+
 import { useProjectContext } from '../../contexts/ProjectContext';
 import ItemOptions from '../ItemOptions/ItemOptions';
 import ProjectPopup from '../ProjectPopup/ProjectPopup';
@@ -10,11 +11,11 @@ export default function MenuItem({
     }) {
 
     const { activeProject, removeProject, openProjectBoard } = useProjectContext();
-    const { projectPopupVisible, setProjectPopupVisible } = usePopups();
+    const [projectPopupVisible, setProjectPopupVisible] = useState(false);
 
     const showEditPopupHandler = (e) => {
         e.stopPropagation();
-        setProjectPopupVisible(projectId)
+        setProjectPopupVisible(true)
     };
 
     const removeProjectHandler = (e) => {
@@ -22,9 +23,10 @@ export default function MenuItem({
         removeProject(projectId);
     };
 
-    return (projectPopupVisible !== projectId ?
+    return (!projectPopupVisible ?
         (<li 
-            className={`${styles.list_menu__item} ${( activeProject && activeProject.id === projectId ? styles.active : '')}`}
+            className={`${styles.list_menu__item} 
+            ${( activeProject && activeProject.id === projectId && styles.active)}`}
             onClick={() => openProjectBoard(projectId)}
             >
             <svg className={styles.item__svg} width="18px" height="18px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -41,7 +43,8 @@ export default function MenuItem({
         </li>) : (
             <ProjectPopup
                 projectId={projectId}
-                />
+                setProjectPopupVisible={setProjectPopupVisible}
+            />
         )
     );
 }

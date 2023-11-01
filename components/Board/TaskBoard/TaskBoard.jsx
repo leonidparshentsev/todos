@@ -3,7 +3,7 @@ import TaskLine from "../TaskLine/TaskLine"
 import styles from "./TaskBoard.module.css"
 import { useProjectContext } from "../../contexts/ProjectContext";
 
-export default function TaskBoard({ setTargetGroupId }) {
+export default function TaskBoard() {
 
     const [dragTaskObj, setDragTaskObj] = useState(null);
     const {activeProject} = useProjectContext();
@@ -16,14 +16,7 @@ export default function TaskBoard({ setTargetGroupId }) {
                 .map((group) =>
                     <TaskLine
                         key={group.id}
-                        title={group.groupTitle}
-                        tasks={group.tasks}
-
-                        groupColorId={group.colorId}
-                        groupId={group.id}
-
-                        projectId={activeProject.id}
-                        setTargetGroupId={setTargetGroupId}
+                        group = {group}
 
                         dragTaskObj={dragTaskObj}
                         setDragTaskObj={setDragTaskObj}
@@ -31,7 +24,6 @@ export default function TaskBoard({ setTargetGroupId }) {
             }
             <TaskLine
                 key={0}
-                projectId={activeProject ? activeProject.id : 0}
                 isNewGroupLine
             />
         </div>)

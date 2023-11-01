@@ -4,8 +4,6 @@ import styles from "./TaskTextArea.module.css"
 export default function TaskTextArea({ 
     taskTitle,
     setTaskTitle,
-    groupId,
-    taskId,
     editTaskInputVisible,    
     hideEditTaskPopupHandler,
     textAreaHeight,
@@ -14,7 +12,7 @@ export default function TaskTextArea({
     const textAreaRef = useRef(null);
 
     useEffect(() => {
-        if(editTaskInputVisible === `${groupId} ${taskId}`) {
+        if(editTaskInputVisible) {
             resizeTextarea();
             setFocus();
         } 
@@ -43,7 +41,6 @@ export default function TaskTextArea({
             style={{ height: textAreaHeight }}
             autoFocus
             rows={1}
-            name="taskTitle"
             value={taskTitle}
             onBlur={() => {
                 hideEditTaskPopupHandler();

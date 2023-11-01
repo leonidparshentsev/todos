@@ -1,14 +1,13 @@
-import { usePopups } from "../../contexts/PopupsContext";
 import { useProjectContext } from "../../contexts/ProjectContext";
 import styles from "./ProjectPopup.module.css"
 
 export default function ProjectPopup({ 
         projectId,
+        setProjectPopupVisible,
         isNewProjectPopup
     }) {
 
     const { addProject, editProjectTitle } = useProjectContext();
-    const { setProjectPopupVisible } = usePopups();
 
     const addProjectHandler = (e) => {
         let newTitle = e.target.value;
@@ -39,7 +38,8 @@ export default function ProjectPopup({
                 autoFocus
                 onBlur={handler}
                 onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === 'Escape') handler(e);
+                    if (e.key === 'Enter') handler(e);
+                    if (e.key === 'Escape') setProjectPopupVisible(false);
                 }} />
         </div>
     )

@@ -12,20 +12,19 @@ export const GroupContextProvider = ({ children }) => {
     const { activeProject, updateProject } = useProjectContext();
 
     const addGroup = (groupName) => {
-        if(groupName) {
-            let colorId = Math.floor(Math.random() * 9) + 1;
-            let id =  activeProject.groups.length > 0 ? (activeProject.groups[activeProject.groups.length - 1].id + 1) : 1
-            updateProject({...activeProject, groups: [...activeProject.groups, {id, groupTitle: groupName, colorId: colorId, tasks: []} ]});
-        }
+        if(!groupName) return;
+
+        let colorId = Math.floor(Math.random() * 9) + 1;
+        let id =  activeProject.groups.length > 0 ? (activeProject.groups[activeProject.groups.length - 1].id + 1) : 1;
+        updateProject({...activeProject, groups: [...activeProject.groups, {id, groupTitle: groupName, colorId: colorId, tasks: []} ]});
     };
 
     const editGroupName = (groupName, groupId) => {
-        if(groupName) {
-            updateProject({...activeProject, groups: [...activeProject.groups.map((group) => {
-                if(group.id === groupId) return {...group, groupTitle: groupName}
-                else return group;
-            })]});
-        }
+        if(!groupName) return;
+        updateProject({...activeProject, groups: [...activeProject.groups.map((group) => {
+            if(group.id === groupId) return {...group, groupTitle: groupName}
+            else return group;
+        })]});
     };
 
     const editGroupColor = (groupColorId, groupId) => {
@@ -36,8 +35,6 @@ export const GroupContextProvider = ({ children }) => {
     };
 
     const removeGroup = (groupId) => {
-        let ask = confirm('Are you sure?');
-        if(!ask) return;
         updateProject({
             ...activeProject, groups: [...activeProject.groups.filter((group) => {
                 if (group.id !== groupId) return group;

@@ -1,4 +1,4 @@
-.task_line__new_group {
+/* .task_line__new_group {
     position: relative;
     height: 40px;
     padding: 10px 20px;
@@ -20,7 +20,17 @@
     border-radius: 5px;
     background-color: #ededed;
     cursor: pointer;
+} */
+
+.new_group__container {
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 }
+
 .new_group__popup {
     z-index: 1;
     display: flex;

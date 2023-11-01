@@ -22,27 +22,25 @@ const taskContainer = useRef(null);
 const removeTaskHandler = () => {
     let ask = confirm('Are you sure?');
     if(!ask) return;
-
     removeTask(groupId, taskId);
 }
 
 const showEditTaskPopupHandler = () => {
-    setEditTaskInputVisible(`${groupId} ${taskId}`);
+    setEditTaskInputVisible(true);
 }
 
 const hideEditTaskPopupHandler = () => {
-    setEditTaskInputVisible('0');
+    setEditTaskInputVisible(false);
     editTaskName(groupId, taskId, taskTitle);
 }
 
-const dragStartHandler = (e, taskId, groupId, title) => {
+const dragStartHandler = (taskId, groupId, title) => {
     setDragTaskObj({taskId, groupId, title});
 }
 
 const dragOverHandler = (e) => {
     e.preventDefault();
-    if(taskContainer.current && taskContainer.current.contains(e.target)) 
-        taskContainer.current.style.borderBottom = '2px solid #2483e2';
+    if(taskContainer.current && taskContainer.current.contains(e.target)) taskContainer.current.style.borderBottom = '2px solid #2483e2';
 }  
 
 const dragLeaveHandler = (e) => {
@@ -60,19 +58,17 @@ return (
     <div className={styles.task_container} 
         draggable={true}
         
-        onDragStart={(e) => dragStartHandler(e, taskId, groupId, title)}
+        onDragStart={() => dragStartHandler(taskId, groupId, title)}
         onDragOver={dragOverHandler}
         onDragLeave={dragLeaveHandler}
         onDragEnd={dragLeaveHandler}
         onDrop={(e) => dropHandler(e, taskId, groupId, dragTaskObj)}
         ref={taskContainer}
         >
-        { editTaskInputVisible === `${groupId} ${taskId}` ? (
+        { editTaskInputVisible ? (
             <TaskTextArea 
                 taskTitle = {taskTitle}
                 setTaskTitle = {setTaskTitle}
-                groupId = {groupId}
-                taskId = {taskId}
                 editTaskInputVisible = {editTaskInputVisible}
                 hideEditTaskPopupHandler = {hideEditTaskPopupHandler}
                 textAreaHeight = {textAreaHeight}
